@@ -1,0 +1,17 @@
+<svg width="800" height="800" viewBox="0 0 32 32" id="icons" version="1.0" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .st0 {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+        }
+    </style>
+
+    <path class="st0" id="XMLID_14_" d="M8 7h16v22H8z"/>
+    <path class="st0" id="XMLID_4_" d="M16 10v16"/>
+    <path class="st0" id="XMLID_118_" d="M20 10v16"/>
+    <path class="st0" id="XMLID_3_" d="M12 10v16"/>
+    <path class="st0" id="XMLID_5_" d="M5 7h22"/>
+    <path class="st0" id="XMLID_6_" d="M13 3h6v4h-6z"/>
+</svg>
