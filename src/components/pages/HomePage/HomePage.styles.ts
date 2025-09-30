@@ -22,5 +22,4 @@ export const NoReview = styled.p`
   align-items: center;
   display: flex;
   justify-content: center;
-  text-align: center;
 `;
