@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router';
 
 import { FILM_URL, WRITE_REVIEW_URL } from '../constants.ts';
 
-import { HomePage } from './pages/HomePage.tsx';
+import { HomePage } from './pages/HomePage/HomePage.tsx';
 import { FilmPage } from './pages/FilmPage.tsx';
 import { WriteReviewPage } from './pages/WriteReviewPage.tsx';
 import { NotFoundPage } from './pages/NotFoundPage.tsx';

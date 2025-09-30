@@ -2,6 +2,7 @@ import { convertPxToRem } from './utilities.ts';
 
 export interface Theme {
   colors: {
+    borders: string;
     headerAndFooter: string;
     subtext: string;
     text: string;
@@ -24,6 +25,7 @@ export interface Theme {
 
 export const theme: Theme = {
   colors: {
+    borders: '#E2E2E2',
     headerAndFooter: '#E2E2E2',
     subtext: '#5B5C5E',
     text: '#000000',

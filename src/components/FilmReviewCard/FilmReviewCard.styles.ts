@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.article`
+interface ContainerProps {
+  isBordered: boolean;
+}
+
+export const Container = styled.article<ContainerProps>`
+  border: ${({ isBordered, theme }) =>
+    isBordered ? `1px dotted ${theme.colors.borders}` : 'none'};
+
   display: grid;
   grid-gap: ${({ theme }) => theme.spacing.md};
   grid-template-areas:
@@ -9,6 +16,8 @@ export const Container = styled.article`
     'readMoreLink readMoreLink';
   grid-template-columns: 60% 40%;
   grid-template-rows: auto auto auto;
+
+  padding: ${({ isBordered, theme }) => (isBordered ? theme.spacing.lg : 0)};
 `;
 
 export const Details = styled.div`

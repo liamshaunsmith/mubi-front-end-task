@@ -11,7 +11,7 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
   }
   
-  body {
+  body, h1, h2, p {
     margin: 0;
   }
   
@@ -23,9 +23,5 @@ export const GlobalStyles = createGlobalStyle`
   
   a:hover {
     text-decoration: underline;
-  }
-
-  h1, h2 {
-    margin: 0;
   }
 `;
