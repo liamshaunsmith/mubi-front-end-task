@@ -3,6 +3,8 @@ import { convertPxToRem } from './utilities.ts';
 export interface Theme {
   colors: {
     headerAndFooter: string;
+    subtext: string;
+    text: string;
   };
   breakpoints: {
     sm: string;
@@ -23,6 +25,8 @@ export interface Theme {
 export const theme: Theme = {
   colors: {
     headerAndFooter: '#E2E2E2',
+    subtext: '#5B5C5E',
+    text: '#000000',
   },
   breakpoints: {
     sm: convertPxToRem(768),
