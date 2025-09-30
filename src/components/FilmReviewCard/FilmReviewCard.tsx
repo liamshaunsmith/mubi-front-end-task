@@ -19,9 +19,9 @@ export const FilmReviewCard = (props: FilmReviewCardProps) => {
         <h2>{props.film.title}</h2>
 
         <Styled.DirectorAndReleaseYearWrapper>
-          {filmDirector && <div>{filmDirector}</div>}
+          {filmDirector && <p>{filmDirector}</p>}
 
-          <div>{props.film.release_year}</div>
+          <p>{props.film.release_year}</p>
         </Styled.DirectorAndReleaseYearWrapper>
       </Styled.Details>
 

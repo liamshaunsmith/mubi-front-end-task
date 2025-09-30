@@ -14,7 +14,7 @@ export const Container = styled.article<ContainerProps>`
     'details image'
     'review view'
     'readMoreLink readMoreLink';
-  grid-template-columns: 60% 40%;
+  grid-template-columns: auto 40%;
   grid-template-rows: auto auto auto;
 
   padding: ${({ isBordered, theme }) => (isBordered ? theme.spacing.lg : 0)};
@@ -28,7 +28,10 @@ export const Details = styled.div`
 `;
 
 export const DirectorAndReleaseYearWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   color: ${({ theme }) => theme.colors.subtext};
+  gap: ${({ theme }) => theme.spacing.xs};
 `;
 
 export const ImageWrapper = styled.div`
