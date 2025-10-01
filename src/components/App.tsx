@@ -8,15 +8,13 @@ import { GlobalStyles } from './GlobalStyles.ts';
 import { Router } from './Router.tsx';
 import { DataFetcher } from './DataFetcher.tsx';
 
-export const App = () => {
-  return (
-    <Provider store={store}>
-      <DataFetcher>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <Router />
-        </ThemeProvider>
-      </DataFetcher>
-    </Provider>
-  );
-};
+export const App = () => (
+  <Provider store={store}>
+    <DataFetcher>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Router />
+      </ThemeProvider>
+    </DataFetcher>
+  </Provider>
+);

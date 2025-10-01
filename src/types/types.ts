@@ -16,3 +16,10 @@ export interface FilmReview {
   contents: string;
   filmId: Film['id'];
 }
+
+export interface FilmWithReview {
+  film: Film;
+  review: FilmReview;
+}
+
+export type DataFetchStatus = 'error' | 'idle' | 'loading' | 'succeeded';

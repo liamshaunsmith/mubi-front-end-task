@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { FilmReview } from '../types/types.ts';
+import type { DataFetchStatus, FilmReview } from '../types/types.ts';
 import { getFilmReviewsService } from '../services.ts';
 
 interface FilmReviewsState {
   data: FilmReview[];
   error: string | null;
-  status: 'error' | 'idle' | 'loading' | 'succeeded';
+  status: DataFetchStatus;
 }
 
 const initialState: FilmReviewsState = {

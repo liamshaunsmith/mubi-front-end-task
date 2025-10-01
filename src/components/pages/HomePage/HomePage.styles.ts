@@ -18,7 +18,7 @@ export const Reviews = styled.div`
   }
 `;
 
-export const NoReview = styled.p`
+export const NoReviews = styled.p`
   align-items: center;
   display: flex;
   justify-content: center;
