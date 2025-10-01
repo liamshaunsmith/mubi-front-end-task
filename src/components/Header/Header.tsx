@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 import { IconButton, type IconButtonProps } from '../IconButton/IconButton.tsx';
 
@@ -7,26 +7,35 @@ import * as Styled from './Header.styles.ts';
 import mubiLogo from '/logo.svg';
 
 export interface HeaderProps {
-  icons?: {
-    leading?: IconButtonProps;
-    trailing?: IconButtonProps;
-  };
+  isBackwardNavigationEnabled?: boolean;
+  trailingIcon?: IconButtonProps;
 }
 
-export const Header = (props: HeaderProps) => (
-  <Styled.Container>
-    <Styled.LeadingColumn>
-      {props.icons?.leading && <IconButton {...props.icons?.leading} />}
-    </Styled.LeadingColumn>
+export const Header = (props: HeaderProps) => {
+  const navigate = useNavigate();
+  const handleBackwardNavigationButtonOnCLick = () => navigate('/');
 
-    <Styled.CentralColumn>
-      <Link to="/">
-        <Styled.Logo src={mubiLogo} alt="MUBI" />
-      </Link>
-    </Styled.CentralColumn>
+  return (
+    <Styled.Container>
+      <Styled.LeadingColumn>
+        {props.isBackwardNavigationEnabled && (
+          <IconButton
+            icon="leftArrow"
+            label="Back to Film Log"
+            onClick={handleBackwardNavigationButtonOnCLick}
+          />
+        )}
+      </Styled.LeadingColumn>
 
-    <Styled.TrailingColumn>
-      {props.icons?.trailing && <IconButton {...props.icons?.trailing} />}
-    </Styled.TrailingColumn>
-  </Styled.Container>
-);
+      <Styled.CentralColumn>
+        <Link to="/">
+          <Styled.Logo src={mubiLogo} alt="MUBI" />
+        </Link>
+      </Styled.CentralColumn>
+
+      <Styled.TrailingColumn>
+        {props.trailingIcon && <IconButton {...props.trailingIcon} />}
+      </Styled.TrailingColumn>
+    </Styled.Container>
+  );
+};

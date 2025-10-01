@@ -14,7 +14,7 @@ import {
 
 import * as Styled from './WriteReviewPage.styles.ts';
 import { addFilmReview } from '../../../store/film-reviews-slice.ts';
-import { FILM_URL } from '../../../constants.ts';
+import { FILM_REVIEW_URL } from '../../../constants.ts';
 
 const FILM_INPUT_ID = 'film';
 const REVIEW_INPUT_ID = 'review';
@@ -71,26 +71,17 @@ export const WriteReviewPage = () => {
       }),
     );
 
-    navigate(`${FILM_URL}/${selectedFilm.value}`);
+    navigate(`${FILM_REVIEW_URL}/${selectedFilm.value}`);
   };
 
   return (
     <>
-      <Header
-        icons={{
-          leading: {
-            icon: 'leftArrow',
-            label: 'Back to Film Log',
-            onClick: () => navigate('/'),
-          },
-        }}
-      />
+      <Header isBackwardNavigationEnabled={true} />
 
       <MainContent>
         <PageTitle title="Write Film Review" />
 
         <Styled.Form onSubmit={handleOnSubmit}>
-          {formError}
           <Styled.FieldWrapper>
             <Styled.Label htmlFor={FILM_INPUT_ID}>Film</Styled.Label>
 
@@ -109,6 +100,8 @@ export const WriteReviewPage = () => {
               onChange={handleReviewTextAreaOnChange}
             />
           </Styled.FieldWrapper>
+
+          {formError && <Styled.FormError>{formError}</Styled.FormError>}
 
           <Styled.SaveButton type="submit">Save Review</Styled.SaveButton>
         </Styled.Form>

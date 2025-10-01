@@ -40,11 +40,17 @@ export const Label = styled.label`
 
 export const SaveButton = styled.button`
   appearance: none;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.background};
   border: 1px dashed ${({ theme }) => theme.colors.borders};
   flex-grow: 0;
   align-self: flex-end;
   font-family: inherit;
   font-size: inherit;
   padding: ${({ theme }) => theme.spacing.md};
+`;
+
+export const FormError = styled.p`
+  color: ${({ theme }) => theme.colors.error};
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  text-align: center;
 `;

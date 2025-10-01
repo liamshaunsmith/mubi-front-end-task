@@ -4,7 +4,7 @@ import {
   type PayloadAction,
 } from '@reduxjs/toolkit';
 
-import type { DataFetchStatus, Film, FilmReview } from '../types/types.ts';
+import type { DataFetchStatus, FilmReview } from '../types/types.ts';
 import { getFilmReviewsService } from '../services.ts';
 
 interface FilmReviewsState {
@@ -45,7 +45,7 @@ export const filmReviewsSlice = createSlice({
     addFilmReview: (state, action: PayloadAction<FilmReview>) => {
       state.data = [...state.data, action.payload];
     },
-    deleteFilmReview: (state, action: PayloadAction<Film['id']>) => {
+    deleteFilmReview: (state, action: PayloadAction<string>) => {
       state.data = state.data.filter(
         (filmReview) => filmReview.filmId !== action.payload,
       );

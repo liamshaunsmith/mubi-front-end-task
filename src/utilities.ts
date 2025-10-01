@@ -1,4 +1,4 @@
-import { FILM_URL, STYLING_SIZING_BASE } from './constants.ts';
+import { FILM_REVIEW_URL, STYLING_SIZING_BASE } from './constants.ts';
 import type { Film } from './types/types.ts';
 
 export const convertPxToRem = (pxValue: number): string =>
@@ -7,7 +7,8 @@ export const convertPxToRem = (pxValue: number): string =>
 export const getFilmDirector = (film: Film): string | undefined =>
   film.cast.find((castMember) => castMember.credits.includes('Director'))?.name;
 
-export const getFilmUrl = (film: Film): string => `${FILM_URL}/${film.id}`;
+export const getFilmUrl = (film: Film): string =>
+  `${FILM_REVIEW_URL}/${film.id}`;
 
 export const truncateText = (text: string, maximumLength: number): string => {
   if (text.length <= maximumLength) {

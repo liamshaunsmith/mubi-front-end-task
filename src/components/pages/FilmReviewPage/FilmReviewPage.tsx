@@ -6,7 +6,7 @@ import { Footer } from '../../Footer/Footer.tsx';
 import { PageTitle } from '../../PageTitle/PageTitle.tsx';
 import { FilmReviewCard } from '../../FilmReviewCard/FilmReviewCard.tsx';
 
-import * as Styled from './FilmPage.styles.ts';
+import * as Styled from './FilmReviewPage.styles.ts';
 import { useAppDispatch, useAppSelector } from '../../../hooks.ts';
 import {
   selectFilmWithReview,
@@ -14,6 +14,7 @@ import {
 } from '../../../store/selectors.ts';
 import type { DataFetchStatus } from '../../../types/types.ts';
 import { deleteFilmReview } from '../../../store/film-reviews-slice.ts';
+import type { IconButtonProps } from '../../IconButton/IconButton.tsx';
 
 type FilmPageParameters = {
   filmId: string;
@@ -26,7 +27,7 @@ const COPY_FOR_DATA_FETCH_STATUS: Record<DataFetchStatus, string> = {
   succeeded: `Sorry, we couldn't find that film review.`,
 };
 
-export const FilmPage = () => {
+export const FilmReviewPage = () => {
   const { filmId } = useParams<FilmPageParameters>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -48,21 +49,19 @@ export const FilmPage = () => {
     navigate('/');
   };
 
+  const headerTrailingIcon: IconButtonProps | undefined = filmWithReview
+    ? {
+        icon: 'delete',
+        label: 'Delete film review',
+        onClick: handleDeleteFilmReview,
+      }
+    : undefined;
+
   return (
     <>
       <Header
-        icons={{
-          leading: {
-            icon: 'leftArrow',
-            label: 'Back to Film Log',
-            onClick: () => navigate('/'),
-          },
-          trailing: {
-            icon: 'delete',
-            label: 'Delete film review',
-            onClick: handleDeleteFilmReview,
-          },
-        }}
+        isBackwardNavigationEnabled={true}
+        trailingIcon={headerTrailingIcon}
       />
 
       <MainContent>

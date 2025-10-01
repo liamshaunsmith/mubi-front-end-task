@@ -16,7 +16,7 @@ export const Input = styled.input`
 `;
 
 export const Suggestions = styled.ul`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.background};
   border: 1px dashed ${({ theme }) => theme.colors.borders};
   border-top: none;
   display: flex;

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import { WRITE_REVIEW_URL } from '../../../constants.ts';
+import { WRITE_FILM_REVIEW_URL } from '../../../constants.ts';
 import {
   selectFilmGenres,
   selectFilmsWithReviews,
@@ -17,6 +17,7 @@ import * as Styled from './HomePage.styles.ts';
 import type { DataFetchStatus } from '../../../types/types.ts';
 import { Filter } from '../../Filter/Filter.tsx';
 import { setSelectedGenre } from '../../../store/films-slice.ts';
+import type { IconButtonProps } from '../../IconButton/IconButton.tsx';
 
 const COPY_FOR_DATA_FETCH_STATUS: Record<DataFetchStatus, string> = {
   error: `Sorry, we aren't able to load your reviews right now.`,
@@ -36,17 +37,15 @@ export const HomePage = () => {
   const handleGenreFilterOnChange = (selectedOption: string | null) =>
     dispatch(setSelectedGenre(selectedOption));
 
+  const headerTrailingIcon: IconButtonProps = {
+    icon: 'plus',
+    label: 'Write film review',
+    onClick: () => navigate(WRITE_FILM_REVIEW_URL),
+  };
+
   return (
     <>
-      <Header
-        icons={{
-          trailing: {
-            icon: 'plus',
-            label: 'Write film review',
-            onClick: () => navigate(WRITE_REVIEW_URL),
-          },
-        }}
-      />
+      <Header trailingIcon={headerTrailingIcon} />
 
       <MainContent>
         <PageTitle title="Film Log">

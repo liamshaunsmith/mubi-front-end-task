@@ -12,7 +12,7 @@ export const Label = styled.label`
 
 export const Filter = styled.select`
   appearance: none;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.background};
   border: 1px dashed ${({ theme }) => theme.colors.borders};
   border-radius: 0;
   font-family: inherit;

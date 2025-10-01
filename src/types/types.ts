@@ -14,7 +14,7 @@ export interface Film {
 
 export interface FilmReview {
   contents: string;
-  filmId: Film['id'];
+  filmId: string;
 }
 
 export interface FilmWithReview {
