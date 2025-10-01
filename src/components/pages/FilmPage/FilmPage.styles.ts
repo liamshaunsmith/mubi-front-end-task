@@ -9,7 +9,7 @@ export const Container = styled.div`
     width: 70%;
   }
 `;
-export const NotFound = styled.p`
+export const PlaceholderCopy = styled.p`
   align-items: center;
   display: flex;
   justify-content: center;

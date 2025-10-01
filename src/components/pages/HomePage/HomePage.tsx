@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { WRITE_REVIEW_URL } from '../../../constants.ts';
 import {
   selectFilmsWithReviews,
-  selectOverallStatus,
+  selectOverallDataFetchStatus,
 } from '../../../store/selectors.ts';
 import { useAppSelector } from '../../../hooks.ts';
 import { Header } from '../../Header/Header.tsx';
@@ -15,7 +15,7 @@ import { FilmReviewCard } from '../../FilmReviewCard/FilmReviewCard.tsx';
 import * as Styled from './HomePage.styles.ts';
 import type { DataFetchStatus } from '../../../types/types.ts';
 
-const COPY_FOR_STATUS: Record<DataFetchStatus, string> = {
+const COPY_FOR_DATA_FETCH_STATUS: Record<DataFetchStatus, string> = {
   error: `Sorry, we aren't able to load your reviews right now.`,
   idle: 'Loading…',
   loading: 'Loading…',
@@ -25,7 +25,7 @@ const COPY_FOR_STATUS: Record<DataFetchStatus, string> = {
 export const HomePage = () => {
   const navigate = useNavigate();
   const filmsWithReviews = useAppSelector(selectFilmsWithReviews);
-  const overallStatus = useAppSelector(selectOverallStatus);
+  const overallDataFetchStatus = useAppSelector(selectOverallDataFetchStatus);
   const areFilmsWithReviewsAvailable = filmsWithReviews.length > 0;
 
   return (
@@ -47,7 +47,7 @@ export const HomePage = () => {
           <Styled.Reviews>
             {filmsWithReviews.map((filmWithReview) => (
               <FilmReviewCard
-                film={filmWithReview.film}
+                filmWithReview={filmWithReview}
                 isTruncated={true}
                 key={filmWithReview.film.id}
               />
@@ -56,7 +56,9 @@ export const HomePage = () => {
         )}
 
         {!areFilmsWithReviewsAvailable && (
-          <Styled.NoReviews>{COPY_FOR_STATUS[overallStatus]}</Styled.NoReviews>
+          <Styled.NoReviews>
+            {COPY_FOR_DATA_FETCH_STATUS[overallDataFetchStatus]}
+          </Styled.NoReviews>
         )}
       </MainContent>
 

@@ -40,12 +40,12 @@ export const Image = styled.img`
   width: 100%;
 `;
 
-export const Review = styled.div`
+export const Review = styled.p`
   grid-area: review;
   grid-column: 1 / -1;
 `;
 
-export const ReadMoreLink = styled.div`
+export const ReadMoreLink = styled.p`
   grid-area: readMoreLink;
   grid-column: 1 / -1;
   margin-top: auto;

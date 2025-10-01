@@ -14,6 +14,10 @@ export const getFilmsService = async (): Promise<Film[]> => {
 };
 
 export const getFilmReviewsService = (): Promise<FilmReview[]> =>
+  /*
+      This is purely returned as a Promise to
+      simulate it coming from an API.
+  */
   new Promise((resolve, reject) => {
     try {
       const filmReviewsLocalStorageItem = localStorage.getItem(
