@@ -7,12 +7,13 @@ import { PageTitle } from '../../PageTitle.ts';
 import { FilmReviewCard } from '../../FilmReviewCard/FilmReviewCard.tsx';
 
 import * as Styled from './FilmPage.styles.ts';
-import { useAppSelector } from '../../../hooks.ts';
+import { useAppDispatch, useAppSelector } from '../../../hooks.ts';
 import {
   selectFilmWithReview,
   selectOverallDataFetchStatus,
 } from '../../../store/selectors.ts';
 import type { DataFetchStatus } from '../../../types/types.ts';
+import { deleteFilmReview } from '../../../store/film-reviews-slice.ts';
 
 type FilmPageParameters = {
   filmId: string;
@@ -28,11 +29,24 @@ const COPY_FOR_DATA_FETCH_STATUS: Record<DataFetchStatus, string> = {
 export const FilmPage = () => {
   const { filmId } = useParams<FilmPageParameters>();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const overallDataFetchStatus = useAppSelector(selectOverallDataFetchStatus);
 
   const filmWithReview = useAppSelector((state) =>
     selectFilmWithReview(state, filmId ?? ''),
   );
+
+  const handleDeleteFilmReview = () => {
+    if (
+      !filmId ||
+      !confirm('Are you sure you want to delete this film review?')
+    ) {
+      return;
+    }
+
+    dispatch(deleteFilmReview(filmId));
+    navigate('/');
+  };
 
   return (
     <>
@@ -46,7 +60,7 @@ export const FilmPage = () => {
           trailing: {
             icon: 'delete',
             label: 'Delete film review',
-            onClick: () => {},
+            onClick: handleDeleteFilmReview,
           },
         }}
       />

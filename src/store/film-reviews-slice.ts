@@ -1,6 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction,
+} from '@reduxjs/toolkit';
 
-import type { DataFetchStatus, FilmReview } from '../types/types.ts';
+import type { DataFetchStatus, Film, FilmReview } from '../types/types.ts';
 import { getFilmReviewsService } from '../services.ts';
 
 interface FilmReviewsState {
@@ -37,7 +41,14 @@ export const filmReviewsSlice = createSlice({
   },
   initialState,
   name: 'filmReviews',
-  reducers: {},
+  reducers: {
+    deleteFilmReview: (state, action: PayloadAction<Film['id']>) => {
+      state.data = state.data.filter(
+        (filmReview) => filmReview.filmId !== action.payload,
+      );
+    },
+  },
 });
 
+export const { deleteFilmReview } = filmReviewsSlice.actions;
 export const filmReviewsReducer = filmReviewsSlice.reducer;
