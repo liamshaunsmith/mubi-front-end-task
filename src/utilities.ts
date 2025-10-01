@@ -1,5 +1,5 @@
 import { FILM_URL, STYLING_SIZING_BASE } from './constants.ts';
-import type { Film } from './types/film.ts';
+import type { Film } from './types/types.ts';
 
 export const convertPxToRem = (pxValue: number): string =>
   `${pxValue / STYLING_SIZING_BASE}rem`;

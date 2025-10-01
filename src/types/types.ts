@@ -8,7 +8,11 @@ export interface Film {
   image_url: string;
   genres: string[];
   release_year: number;
-  review?: string;
   title: string;
   video_url: string;
+}
+
+export interface FilmReview {
+  contents: string;
+  filmId: Film['id'];
 }

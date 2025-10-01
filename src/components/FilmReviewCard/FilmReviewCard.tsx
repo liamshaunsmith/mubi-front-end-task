@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
-import type { Film } from '../../types/film.ts';
-import { getFilmDirector, getFilmUrl, truncateText } from '../../utilities.ts';
+import type { Film } from '../../types/types.ts';
+import { getFilmDirector, getFilmUrl } from '../../utilities.ts';
 
 import * as Styled from './FilmReviewCard.styles.ts';
 
@@ -29,11 +29,7 @@ export const FilmReviewCard = (props: FilmReviewCardProps) => {
         <Styled.Image src={props.film.image_url} alt="" />
       </Styled.ImageWrapper>
 
-      <Styled.Review>
-        {props.isTruncated && props.film.review
-          ? truncateText(props.film.review, 150)
-          : props.film.review}
-      </Styled.Review>
+      <Styled.Review></Styled.Review>
 
       {props.isTruncated && (
         <Styled.ReadMoreLink>
