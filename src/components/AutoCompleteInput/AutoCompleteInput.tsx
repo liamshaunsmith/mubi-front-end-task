@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import { useCombobox } from 'downshift';
 
-import * as Styled from './AutocompleteInput.styles.ts';
+import * as Styled from './AutoCompleteInput.styles.ts';
 
-export interface AutocompleteInputOption {
+export interface AutoCompleteInputOption {
   label: string;
   value: string;
 }
 
-interface AutocompleteInputProps {
-  options: AutocompleteInputOption[];
-  onChange: (selectedOption: AutocompleteInputOption | null) => void;
+interface AutoCompleteInputProps {
+  options: AutoCompleteInputOption[];
+  onChange: (selectedOption: AutoCompleteInputOption | null) => void;
   placeholder: string;
 }
 
-export const AutocompleteInput = (props: AutocompleteInputProps) => {
-  const [suggestions, setSuggestions] = useState<AutocompleteInputOption[]>(
+export const AutoCompleteInput = (props: AutoCompleteInputProps) => {
+  const [suggestions, setSuggestions] = useState<AutoCompleteInputOption[]>(
     props.options,
   );
 
@@ -26,7 +26,7 @@ export const AutocompleteInput = (props: AutocompleteInputProps) => {
     getItemProps,
     getMenuProps,
     selectedItem,
-  } = useCombobox<AutocompleteInputOption>({
+  } = useCombobox<AutoCompleteInputOption>({
     items: suggestions,
     itemToString: (item) => (item ? item.label : ''),
     onInputValueChange: (inputValueChange) =>

@@ -42,6 +42,9 @@ export const filmReviewsSlice = createSlice({
   initialState,
   name: 'filmReviews',
   reducers: {
+    addFilmReview: (state, action: PayloadAction<FilmReview>) => {
+      state.data = [...state.data, action.payload];
+    },
     deleteFilmReview: (state, action: PayloadAction<Film['id']>) => {
       state.data = state.data.filter(
         (filmReview) => filmReview.filmId !== action.payload,
@@ -50,5 +53,5 @@ export const filmReviewsSlice = createSlice({
   },
 });
 
-export const { deleteFilmReview } = filmReviewsSlice.actions;
+export const { addFilmReview, deleteFilmReview } = filmReviewsSlice.actions;
 export const filmReviewsReducer = filmReviewsSlice.reducer;

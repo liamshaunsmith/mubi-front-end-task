@@ -1,10 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type {
-  DataFetchStatus,
-  FilmReview,
-  FilmWithReview,
-} from '../types/types.ts';
+import type { DataFetchStatus, FilmWithReview } from '../types/types.ts';
+import type { AutoCompleteInputOption } from '../components/AutoCompleteInput/AutoCompleteInput.tsx';
 
 import type { RootState } from './store.ts';
 
@@ -54,8 +51,8 @@ export const selectFilmWithReview = createSelector(
 export const selectFilmsWithReviews = createSelector(
   [selectFilms, selectFilmReviews],
   (films, filmReviews) =>
-    filmReviews.reduce(
-      (filmsWithReviews: FilmWithReview[], currentFilmReview: FilmReview) => {
+    filmReviews.reduce<FilmWithReview[]>(
+      (filmsWithReviews, currentFilmReview) => {
         const newFilmsWithReviews = filmsWithReviews;
 
         const correspondingFilmForCurrentFilmReview = films.find(
@@ -73,4 +70,23 @@ export const selectFilmsWithReviews = createSelector(
       },
       [],
     ),
+);
+
+export const selectAutoCompleteFilmInputOptions = createSelector(
+  [selectFilms, selectFilmReviews],
+  (films, filmReviews) =>
+    films.reduce<AutoCompleteInputOption[]>((unreviewedFilms, currentFilm) => {
+      const newUnreviewedFilms = unreviewedFilms;
+
+      if (
+        !filmReviews.find((filmReview) => currentFilm.id === filmReview.filmId)
+      ) {
+        unreviewedFilms.push({
+          label: currentFilm.title,
+          value: currentFilm.id,
+        });
+      }
+
+      return newUnreviewedFilms;
+    }, []),
 );

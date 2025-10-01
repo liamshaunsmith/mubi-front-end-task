@@ -21,7 +21,7 @@ export const FieldWrapper = styled.fieldset`
   padding: 0;
 `;
 
-export const Textarea = styled.textarea`
+export const TextArea = styled.textarea`
   appearance: none;
   border: 1px dashed ${({ theme }) => theme.colors.borders};
   font-family: inherit;
