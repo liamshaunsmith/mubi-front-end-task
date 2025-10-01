@@ -1,5 +1,6 @@
 import type { Film, FilmReview } from './types/types.ts';
 import { FILM_REVIEWS_LOCAL_STORAGE_KEY, FILMS_API_URL } from './constants.ts';
+import { loadDataFromLocalStorage } from './utilities.ts';
 
 export const getFilmsService = async (): Promise<Film[]> => {
   const fetchFilmsResponse = await fetch(FILMS_API_URL);
@@ -16,33 +17,17 @@ export const getFilmsService = async (): Promise<Film[]> => {
 export const getFilmReviewsService = (): Promise<FilmReview[]> =>
   /*
       This is purely returned as a Promise to
-      simulate it coming from an API.
+      simulate it coming from an API for the task.
+
+      In an ideal world where time is not limited,
+      I would also check that filmReviewsFromLocalStorage
+      adheres to FilmReview[]. For now, we shall presume
+      it's all good.
   */
-  new Promise((resolve, reject) => {
-    try {
-      const filmReviewsLocalStorageItem = localStorage.getItem(
-        FILM_REVIEWS_LOCAL_STORAGE_KEY,
-      );
+  new Promise((resolve) => {
+    const filmReviewsFromLocalStorage =
+      loadDataFromLocalStorage<FilmReview[]>(FILM_REVIEWS_LOCAL_STORAGE_KEY) ??
+      [];
 
-      if (!filmReviewsLocalStorageItem) {
-        resolve([]);
-
-        return;
-      }
-
-      const parsedFilmReviewsLocalStorageItem = JSON.parse(
-        filmReviewsLocalStorageItem,
-      );
-
-      /*
-          In an ideal world where time is not limited,
-          I would be checking that parsedFilmReviewsLocalStorageItem
-          adheres to FilmReview[]. For now, we shall presume it's
-          all good.
-      */
-
-      resolve(parsedFilmReviewsLocalStorageItem);
-    } catch (error) {
-      reject(error);
-    }
+    resolve(filmReviewsFromLocalStorage ? filmReviewsFromLocalStorage : []);
   });

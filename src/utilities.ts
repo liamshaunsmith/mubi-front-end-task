@@ -19,3 +19,40 @@ export const truncateText = (text: string, maximumLength: number): string => {
 
   return `${truncatedText.slice(0, lastTruncatedWordIndex)}…`;
 };
+
+export const saveDataToLocalStorage = (
+  localStorageKey: string,
+  dataToStore: unknown,
+) => {
+  try {
+    const serializedData = JSON.stringify(dataToStore);
+
+    localStorage.setItem(localStorageKey, serializedData);
+  } catch (error) {
+    console.error(
+      `Failed to save data to local storage key ${localStorageKey}.`,
+      error,
+    );
+  }
+};
+
+export const loadDataFromLocalStorage = <DataReturnType>(
+  localStorageKey: string,
+): DataReturnType | undefined => {
+  try {
+    const serializedData = localStorage.getItem(localStorageKey);
+
+    if (serializedData === null) {
+      return undefined;
+    }
+
+    return JSON.parse(serializedData);
+  } catch (error) {
+    console.error(
+      `Failed to load data from local storage key ${localStorageKey}.`,
+      error,
+    );
+
+    throw error;
+  }
+};
