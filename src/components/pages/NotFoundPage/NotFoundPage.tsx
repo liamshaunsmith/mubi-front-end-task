@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { MainContent } from '../../MainContent.ts';
 import { Header } from '../../Header/Header.tsx';
 import { Footer } from '../../Footer/Footer.tsx';
-import { PageTitle } from '../../PageTitle.ts';
+import { PageTitle } from '../../PageTitle/PageTitle.tsx';
 
 import * as Styled from './NotFoundPage.styles.tsx';
 
@@ -22,7 +22,7 @@ export const NotFoundPage = () => {
         }}
       />
       <MainContent>
-        <PageTitle>Page Not Found</PageTitle>
+        <PageTitle title="Page Not Found" />
 
         <Styled.NotFound>Sorry, we could find that page.</Styled.NotFound>
       </MainContent>

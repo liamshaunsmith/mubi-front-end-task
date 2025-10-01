@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { Header } from '../../Header/Header.tsx';
 import { MainContent } from '../../MainContent.ts';
 import { Footer } from '../../Footer/Footer.tsx';
-import { PageTitle } from '../../PageTitle.ts';
+import { PageTitle } from '../../PageTitle/PageTitle.tsx';
 import { FilmReviewCard } from '../../FilmReviewCard/FilmReviewCard.tsx';
 
 import * as Styled from './FilmPage.styles.ts';
@@ -66,7 +66,7 @@ export const FilmPage = () => {
       />
 
       <MainContent>
-        <PageTitle>Film Review</PageTitle>
+        <PageTitle title="Film Review" />
 
         <Styled.Container>
           {filmWithReview && (

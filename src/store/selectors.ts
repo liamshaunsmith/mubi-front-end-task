@@ -7,6 +7,7 @@ import type { RootState } from './store.ts';
 
 const selectFilms = (state: RootState) => state.films.data;
 const selectFilmReviews = (state: RootState) => state.filmReviews.data;
+const selectSelectedGenre = (state: RootState) => state.films.selectedGenre;
 
 export const selectOverallDataFetchStatus = (
   state: RootState,
@@ -49,8 +50,8 @@ export const selectFilmWithReview = createSelector(
 );
 
 export const selectFilmsWithReviews = createSelector(
-  [selectFilms, selectFilmReviews],
-  (films, filmReviews) =>
+  [selectFilms, selectFilmReviews, selectSelectedGenre],
+  (films, filmReviews, selectedGenre) =>
     filmReviews.reduce<FilmWithReview[]>(
       (filmsWithReviews, currentFilmReview) => {
         const newFilmsWithReviews = filmsWithReviews;
@@ -59,7 +60,19 @@ export const selectFilmsWithReviews = createSelector(
           (film) => film.id === currentFilmReview.filmId,
         );
 
-        if (correspondingFilmForCurrentFilmReview) {
+        let isSelectedGenreMatch = false;
+
+        if (
+          (selectedGenre &&
+            correspondingFilmForCurrentFilmReview?.genres.includes(
+              selectedGenre,
+            )) ||
+          selectedGenre === null
+        ) {
+          isSelectedGenreMatch = true;
+        }
+
+        if (correspondingFilmForCurrentFilmReview && isSelectedGenreMatch) {
           newFilmsWithReviews.push({
             film: correspondingFilmForCurrentFilmReview,
             review: currentFilmReview,
@@ -89,4 +102,20 @@ export const selectAutoCompleteFilmInputOptions = createSelector(
 
       return newUnreviewedFilms;
     }, []),
+);
+
+export const selectFilmGenres = createSelector([selectFilms], (films) =>
+  films
+    .reduce<string[]>((filmGenres, currentFilm) => {
+      const newFilmGenres = filmGenres;
+
+      currentFilm.genres.forEach((filmGenre) => {
+        if (!newFilmGenres.includes(filmGenre)) {
+          newFilmGenres.push(filmGenre);
+        }
+      });
+
+      return newFilmGenres;
+    }, [])
+    .sort(),
 );

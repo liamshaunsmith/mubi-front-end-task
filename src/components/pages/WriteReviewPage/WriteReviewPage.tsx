@@ -6,7 +6,7 @@ import { selectAutoCompleteFilmInputOptions } from '../../../store/selectors.ts'
 import { Header } from '../../Header/Header.tsx';
 import { MainContent } from '../../MainContent.ts';
 import { Footer } from '../../Footer/Footer.tsx';
-import { PageTitle } from '../../PageTitle.ts';
+import { PageTitle } from '../../PageTitle/PageTitle.tsx';
 import {
   AutoCompleteInput,
   type AutoCompleteInputOption,
@@ -87,7 +87,7 @@ export const WriteReviewPage = () => {
       />
 
       <MainContent>
-        <PageTitle>Write Film Review</PageTitle>
+        <PageTitle title="Write Film Review" />
 
         <Styled.Form onSubmit={handleOnSubmit}>
           {formError}

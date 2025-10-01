@@ -1,4 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction,
+} from '@reduxjs/toolkit';
 
 import type { DataFetchStatus, Film } from '../types/types.ts';
 import { getFilmsService } from '../services.ts';
@@ -6,12 +10,14 @@ import { getFilmsService } from '../services.ts';
 interface FilmsState {
   data: Film[];
   error: string | null;
+  selectedGenre: string | null;
   status: DataFetchStatus;
 }
 
 const initialState: FilmsState = {
   error: null,
   data: [],
+  selectedGenre: null,
   status: 'idle',
 };
 
@@ -37,7 +43,12 @@ export const filmsSlice = createSlice({
   },
   initialState,
   name: 'films',
-  reducers: {},
+  reducers: {
+    setSelectedGenre: (state, action: PayloadAction<string | null>) => {
+      state.selectedGenre = action.payload;
+    },
+  },
 });
 
+export const { setSelectedGenre } = filmsSlice.actions;
 export const filmsReducer = filmsSlice.reducer;
