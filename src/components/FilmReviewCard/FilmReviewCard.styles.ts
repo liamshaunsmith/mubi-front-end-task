@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 interface ContainerProps {
-  isBordered: boolean;
+  $isBordered: boolean;
 }
 
 export const Container = styled.article<ContainerProps>`
-  border: ${({ isBordered, theme }) =>
-    isBordered ? `1px dotted ${theme.colors.borders}` : 'none'};
-
+  border: ${({ $isBordered, theme }) =>
+    $isBordered ? `1px dashed ${theme.colors.borders}` : 'none'};
   display: grid;
   grid-gap: ${({ theme }) => theme.spacing.md};
   grid-template-areas:
@@ -16,8 +15,7 @@ export const Container = styled.article<ContainerProps>`
     'readMoreLink readMoreLink';
   grid-template-columns: auto 40%;
   grid-template-rows: auto auto auto;
-
-  padding: ${({ isBordered, theme }) => (isBordered ? theme.spacing.lg : 0)};
+  padding: ${({ $isBordered, theme }) => ($isBordered ? theme.spacing.lg : 0)};
 `;
 
 export const Details = styled.div`
@@ -50,4 +48,5 @@ export const Review = styled.div`
 export const ReadMoreLink = styled.div`
   grid-area: readMoreLink;
   grid-column: 1 / -1;
+  margin-top: auto;
 `;

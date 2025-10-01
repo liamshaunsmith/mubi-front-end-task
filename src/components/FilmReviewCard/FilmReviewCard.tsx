@@ -14,7 +14,7 @@ export const FilmReviewCard = (props: FilmReviewCardProps) => {
   const filmDirector = getFilmDirector(props.film);
 
   return (
-    <Styled.Container isBordered={props.isTruncated}>
+    <Styled.Container $isBordered={props.isTruncated}>
       <Styled.Details>
         <h2>{props.film.title}</h2>
 

@@ -4,7 +4,7 @@ import { FILM_URL, WRITE_REVIEW_URL } from '../constants.ts';
 
 import { HomePage } from './pages/HomePage/HomePage.tsx';
 import { FilmPage } from './pages/FilmPage/FilmPage.tsx';
-import { WriteReviewPage } from './pages/WriteReviewPage.tsx';
+import { WriteReviewPage } from './pages/WriteReviewPage/WriteReviewPage.tsx';
 import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage.tsx';
 
 export const Router = () => (

@@ -25,7 +25,7 @@ export interface Theme {
 
 export const theme: Theme = {
   colors: {
-    borders: '#E2E2E2',
+    borders: '#C9C7C7',
     headerAndFooter: '#E2E2E2',
     subtext: '#5B5C5E',
     text: '#000000',
